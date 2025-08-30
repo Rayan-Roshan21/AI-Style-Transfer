@@ -5,7 +5,7 @@ import { useONNX } from "../hooks/useONNX";
 import { useState, useRef } from "react";
 
 export default function Home() {
-  const { wasm, loading: wasmLoading, error: wasmError } = useWasm();
+  const { loading: wasmLoading, error: wasmError } = useWasm();
   const { 
     loadModel, 
     processImage: processImageWithONNX, 

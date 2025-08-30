@@ -21,11 +21,11 @@ const useWasm = () => {
         await wasmModule.default();
 
         // Create the module interface
-        const module: WasmModule = {
+        const wasmModuleInterface: WasmModule = {
           factorial: wasmModule.factorial,
         };
 
-        setWasm(module);
+        setWasm(wasmModuleInterface);
       } catch (err) {
         console.error("Failed to load WASM module:", err);
         setError(err instanceof Error ? err.message : "Failed to load WASM module");
