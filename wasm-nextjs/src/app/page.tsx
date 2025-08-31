@@ -15,7 +15,7 @@ export default function Home() {
   } = useONNX();
   
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [selectedStyle, setSelectedStyle] = useState<string>("piccasso");
+  const [selectedStyle, setSelectedStyle] = useState<string>("vangogh");
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -100,8 +100,8 @@ export default function Home() {
   };
 
   const styleOptions = [
-    { value: "piccasso", label: "Picasso", description: "Cubist artistic style" },
-    { value: "vangogh", label: "Van Gogh", description: "Post-impressionist brushstrokes" },
+    { value: "vangogh", label: "Picasso", description: "Cubist artistic style" },
+    { value: "piccasso", label: "Van Gogh", description: "Post-impressionist brushstrokes" },
     { value: "cyberpunk", label: "Cyberpunk", description: "Futuristic digital art" }
   ];
 
@@ -161,10 +161,10 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Left Panel - Controls */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-6 text-white">
             {/* Upload Section */}
             <div className="card p-6 animate-slide-in">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Upload Image</h2>
+              <h2 className="text-lg font-semibold text-white mb-4">Upload Image</h2>
               
               <div
                 className={`upload-area p-8 text-center transition-all duration-200 ${
@@ -185,12 +185,12 @@ export default function Home() {
                 
                 {!imagePreview ? (
                   <div className="py-12">
-                    <svg className="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-12 h-12 mx-auto mb-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <p className="text-gray-600 font-medium mb-1">Drop your image here</p>
-                    <p className="text-gray-500 text-sm">or click to browse</p>
-                    <p className="text-gray-400 text-xs mt-2">Supports JPG, PNG, GIF</p>
+                    <p className="text-white font-medium mb-1">Drop your image here</p>
+                    <p className="text-white text-sm">or click to browse</p>
+                    <p className="text-gray-300 text-xs mt-2">Supports JPG, PNG, GIF</p>
                   </div>
                 ) : (
                   <div className="relative">
@@ -219,7 +219,7 @@ export default function Home() {
 
             {/* Style Selection */}
             <div className="card p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Choose Style</h2>
+              <h2 className="text-lg font-semibold text-white mb-4">Choose Style</h2>
               
               <div className="space-y-3">
                 {styleOptions.map((style) => (
@@ -241,8 +241,10 @@ export default function Home() {
                     />
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium text-gray-900">{style.label}</p>
-                        <p className="text-sm text-gray-500">{style.description}</p>
+                        {/* Update label text color based on selection */}
+                        <p className={`font-medium ${selectedStyle === style.value ? 'text-gray-900' : 'text-white'}`}>{style.label}</p>
+                        {/* Update description text color based on selection */}
+                        <p className={`text-sm ${selectedStyle === style.value ? 'text-gray-700' : 'text-gray-300'}`}>{style.description}</p>
                       </div>
                       {selectedStyle === style.value && (
                         <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
@@ -317,7 +319,7 @@ export default function Home() {
                         <button
                         onClick={() => {
                           const link = document.createElement('a');
-                          link.download = `stylized-${selectedStyle}-${Date.now()}.png`;
+                          link.download = `Your art piece.png`;
                           link.href = processedImage;
                           link.click();
                         }}
