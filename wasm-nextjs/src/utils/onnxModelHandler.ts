@@ -39,8 +39,9 @@ export class ONNXModelHandler {
     try {
       await initializeOnnxRuntime();
       
-      console.log(`Loading ONNX model: ${this.modelName}`);
+      console.log(`🔍 DEBUGGING: Loading ONNX model: "${this.modelName}"`);
       const modelPath = `/models/${this.modelName}.onnx`;
+      console.log(`📂 Model path: ${modelPath}`);
       
       // Create session with CPU execution provider for compatibility
       this.session = await ort.InferenceSession.create(modelPath, {
@@ -48,7 +49,7 @@ export class ONNXModelHandler {
         graphOptimizationLevel: 'disabled'
       });
       
-      console.log(`✅ Successfully loaded ${this.modelName} model`);
+      console.log(`✅ Successfully loaded "${this.modelName}" model`);
       console.log('Input names:', this.session.inputNames);
       console.log('Output names:', this.session.outputNames);
       
@@ -96,7 +97,7 @@ export class ONNXModelHandler {
    */
   async processImage(file: File): Promise<ImageData> {
     try {
-      console.log(`Processing image with ${this.modelName} model...`);
+      console.log(`🎨 DEBUGGING: Processing image with "${this.modelName}" model...`);
       
       // Step 1: Preprocess image with improved configuration
       const inputTensor = await preprocessImageForONNX(file, 'styleTransferSimple');
@@ -108,7 +109,7 @@ export class ONNXModelHandler {
       const config = PREPROCESSING_CONFIGS.styleTransferSimple;
       const imageData = tensorToImageDataAuto(outputTensor, config.width, config.height);
       
-      console.log(`✅ Image processing completed with ${this.modelName}`);
+      console.log(`✅ Image processing completed with "${this.modelName}"`);
       return imageData;
       
     } catch (error) {

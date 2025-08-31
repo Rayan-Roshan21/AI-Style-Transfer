@@ -66,15 +66,19 @@ export default function Home() {
     
     setIsProcessing(true);
     try {
+      console.log(`🔍 DEBUGGING: Selected style is: "${selectedStyle}"`);
+      
       // Load model if not already loaded
       if (!isModelLoaded(selectedStyle)) {
-        console.log(`Loading model: ${selectedStyle}`);
+        console.log(`📥 Loading model: ${selectedStyle}`);
         await loadModel(selectedStyle);
-        console.log(`Model ${selectedStyle} loaded successfully`);
+        console.log(`✅ Model ${selectedStyle} loaded successfully`);
+      } else {
+        console.log(`♻️ Model ${selectedStyle} already loaded, using existing`);
       }
       
       // Process image with ONNX model
-      console.log(`Processing image with model: ${selectedStyle}`);
+      console.log(`🎨 Processing image with model: "${selectedStyle}"`);
       const resultImageData = await processImageWithONNX(selectedStyle, selectedImage);
       
       // Convert ImageData to displayable format
@@ -86,7 +90,7 @@ export default function Home() {
       
       const processedDataUrl = canvas.toDataURL();
       setProcessedImage(processedDataUrl);
-      console.log('✅ Image processing completed successfully');
+      console.log(`✅ Image processing completed successfully with model: "${selectedStyle}"`);
     } catch (error) {
       console.error('Error processing image:', error);
       alert(`Error processing image: ${error instanceof Error ? error.message : 'Unknown error'}`);

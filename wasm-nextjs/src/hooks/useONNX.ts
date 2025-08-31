@@ -69,9 +69,9 @@ export function useONNX() {
     setError(null);
     
     try {
-      console.log(`Processing image with model: ${modelName}`);
+      console.log(`🔍 DEBUGGING: useONNX.processImage called with model: "${modelName}"`);
       const result = await modelManager.processImage(modelName, file);
-      console.log(`✅ Image processed successfully with ${modelName}`);
+      console.log(`✅ Image processed successfully with "${modelName}"`);
       return result;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to process image';
