@@ -12,7 +12,7 @@
 
 Ever wondered what your vacation photos would look like as a Van Gogh painting? Or how your selfie might appear through Picasso's cubist lens? This AI-powered web application makes it possible! Using cutting-edge machine learning models that run entirely in your browser, you can transform any image into stunning artistic creations.
 
-**🌟 [Try it live here!](https://wasm-nextjs.vercel.app/)**
+**🌟 [Try it live here!](https://imagestyletransfer.vercel.app/)**
 
 ## 🎯 Features
 
